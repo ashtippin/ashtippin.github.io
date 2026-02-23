@@ -1,206 +1,240 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Ashton Tippin</title>
-
-  <!-- Optional: nice mono font. If you want zero external deps, remove this. -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ashton Tippin | Gridline</title>
   <style>
-    :root{
-      --bg: #05070c;
-      --panel: rgba(10, 15, 24, 0.78);
-      --border: rgba(125, 211, 252, 0.18);
-      --text: #d1d5db;
-      --muted: #94a3b8;
-      --accent: #7dd3fc; /* soft cyan */
-      --accent2: #a3e635; /* subtle green */
+    :root {
+      --bg: #0b0d12;
+      --panel: #10141c;
+      --ink: #e8f1ff;
+      --muted: #8ea0bc;
+      --line: #253044;
+      --cyan: #66d9ef;
+      --lime: #a6e22e;
+      --pink: #f92672;
+      --amber: #f4bf75;
     }
-
     * { box-sizing: border-box; }
-
-    body{
-      margin:0;
-      min-height:100vh;
-      display:grid;
-      place-items:center;
-      padding: 28px 16px;
-      color: var(--text);
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
       background:
-        radial-gradient(1200px 500px at 20% 10%, rgba(163,230,53,0.10), transparent 55%),
-        radial-gradient(900px 450px at 80% 20%, rgba(125,211,252,0.10), transparent 60%),
-        linear-gradient(180deg, #04060b, var(--bg));
-      font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px),
+        radial-gradient(circle at 15% 10%, rgba(102,217,239,0.08), transparent 40%),
+        radial-gradient(circle at 85% 85%, rgba(249,38,114,0.08), transparent 35%),
+        var(--bg);
+      background-size: 22px 22px, 22px 22px, auto, auto, auto;
+      min-height: 100vh;
+      padding: 20px;
     }
-
-    .wrap{ width:min(860px, 100%); }
-
-    .card{
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      box-shadow: 0 24px 60px rgba(0,0,0,0.55);
-      overflow:hidden;
-      backdrop-filter: blur(10px);
+    .frame {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 16px;
+      align-items: stretch;
     }
-
-    .topbar{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      padding: 14px 18px;
-      border-bottom: 1px solid rgba(125,211,252,0.12);
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
-
-    .dot{ width:10px;height:10px;border-radius:999px; opacity:0.9; }
-    .d1{ background:#ef4444; } .d2{ background:#f59e0b; } .d3{ background:#22c55e; }
-
-    .content{ padding: 22px 22px 18px; }
-
-    h1{
-      margin: 0 0 6px;
-      font-size: clamp(1.6rem, 3.6vw, 2.2rem);
-      letter-spacing: 0.4px;
-      color: #e5e7eb;
-    }
-
-    .subtitle{
-      margin: 0 0 16px;
-      color: var(--muted);
-      line-height: 1.5;
-    }
-
-    .prompt{
-      color: var(--accent2);
-      font-weight: 600;
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap: 14px;
-      margin-top: 10px;
-    }
-    @media (min-width: 740px){
-      .grid{ grid-template-columns: 1fr 1fr; }
-    }
-
-    .panel{
-      border: 1px solid rgba(125,211,252,0.12);
+    .panel {
+      border: 1px solid var(--line);
       border-radius: 14px;
-      padding: 14px 14px 12px;
-      background: rgba(2, 6, 23, 0.35);
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent), var(--panel);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+      overflow: hidden;
     }
-
-    .panel h2{
-      margin: 0 0 10px;
-      font-size: 1rem;
-      color: #e5e7eb;
-      font-weight: 600;
+    .hero {
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
     }
-
-    .line{
-      margin: 8px 0;
-      line-height: 1.5;
-      color: var(--text);
+    .eyebrow {
+      color: var(--cyan);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-size: 11px;
+      margin-bottom: 10px;
     }
-
-    a{
-      color: var(--accent);
-      text-decoration: none;
+    h1 {
+      margin: 0;
+      font-size: 34px;
+      line-height: 1.05;
     }
-    a:hover{ text-decoration: underline; }
-
-    ul{
-      margin: 8px 0 0 18px;
-      padding:0;
-      color: var(--text);
-    }
-    li{ margin: 6px 0; }
-
-    .footer{
-      display:flex;
-      justify-content: space-between;
-      flex-wrap:wrap;
-      gap:10px;
-      padding: 14px 18px;
-      border-top: 1px solid rgba(125,211,252,0.12);
+    .role {
       color: var(--muted);
-      font-size: 0.9rem;
+      margin-top: 8px;
+      font-size: 14px;
     }
-
-    code{
-      background: rgba(125,211,252,0.10);
-      border: 1px solid rgba(125,211,252,0.14);
-      padding: 2px 6px;
-      border-radius: 8px;
-      color: #e5e7eb;
+    .quote {
+      margin-top: 14px;
+      border-left: 3px solid var(--pink);
+      background: rgba(249,38,114,0.08);
+      padding: 10px 12px;
+      color: #ffd3e4;
+      font-weight: 700;
+      font-style: italic;
+      margin-left: 0;
+      margin-right: 0;
+    }
+    .quote cite {
+      display: block;
+      margin-top: 6px;
+      color: #ffb8d1;
+      font-style: normal;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+    .bio {
+      margin-top: 14px;
+      color: #d8e6ff;
+      line-height: 1.65;
+    }
+    .subblocks {
+      margin-top: 16px;
+      display: grid;
+      gap: 12px;
+      grid-template-rows: 1fr 1fr;
+      flex: 1 1 auto;
+      min-height: 0;
+      align-content: stretch;
+    }
+    .subblock {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px;
+      background: rgba(255,255,255,0.015);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+    .stack {
+      display: grid;
+      gap: 16px;
+      height: 100%;
+      grid-template-rows: minmax(0, 1.25fr) minmax(0, 0.8fr) minmax(0, 0.95fr);
+    }
+    .section {
+      padding: 16px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+    }
+    .section:first-child { border-top: 0; }
+    .title {
+      color: var(--amber);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+    ul { margin: 0; padding-left: 18px; line-height: 1.55; }
+    li { margin: 6px 0; }
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .chip {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 5px 9px;
+      color: var(--muted);
+      font-size: 12px;
+      background: rgba(255,255,255,0.015);
+    }
+    .contact-row {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 10px;
+      margin-bottom: 8px;
+      align-items: start;
+    }
+    .k { color: var(--cyan); }
+    .v, .v a { color: var(--ink); }
+    .v a { text-decoration-color: rgba(102,217,239,0.35); }
+    @media (max-width: 900px) {
+      .frame { grid-template-columns: 1fr; align-items: start; }
+      h1 { font-size: 28px; }
+      .hero { height: auto; }
+      .subblocks {
+        grid-template-rows: none;
+        flex: 0 0 auto;
+      }
+      .stack {
+        height: auto;
+        grid-template-rows: none;
+      }
     }
   </style>
 </head>
-
 <body>
-  <main class="wrap">
-    <section class="card" aria-label="profile">
-      <div class="topbar">
-        <span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span>
-        <span><span class="prompt">./</span> ashton-tippin</span>
-      </div>
-
-      <div class="content">
-        <h1>Ashton Tippin</h1>
-        <p class="subtitle">
-          Cybersecurity Engineer • Georgia Tech Cybersecurity (M.S.) student<br />
-          Cloud Security • Automation • Binary Exploitation<br />
-          <strong>Computers respect me.</strong>
-        </p>
-
-        <div class="grid">
-          <div class="panel">
-            <h2>Links</h2>
-            <p class="line"><span class="prompt">&gt;</span> <a href="https://www.linkedin.com/in/ashton-tippin" target="_blank" rel="noreferrer">LinkedIn</a></p>
-            <p class="line"><span class="prompt">&gt;</span> <a href="https://github.com/asht17" target="_blank" rel="noreferrer">GitHub</a></p>
-            <p class="line"><span class="prompt">&gt;</span> <a href="https://keys.openpgp.org/vks/v1/by-fingerprint/3F3B676C229675E9CE1E05B10C9CB2F77AF1C331" target="_blank" rel="noreferrer">PGP Key</a></p>
+  <div class="frame">
+    <section class="panel hero">
+      <div class="eyebrow">Signal / Landing</div>
+      <h1>Ashton Tippin</h1>
+      <div class="role">Cybersecurity Engineer</div>
+      <p class="bio">
+        I'm a cybersecurity engineer with a DevOps background, currently pursuing a master's in cybersecurity at Georgia Tech.
+        I focus on cloud security, automation, and software development, and lately I've been diving into binary exploitation.
+      </p>
+      <blockquote class="quote">
+        “Computers respect me.”
+        <cite>— Ashton Tippin</cite>
+      </blockquote>
+      <div class="subblocks">
+        <div class="subblock">
+          <div class="title" style="margin-bottom:8px;">Education</div>
+          <div style="color: var(--muted); line-height: 1.55;">
+            USF (Tampa) — B.S. Cybersecurity<br>
+            Georgia Tech — M.S. Cybersecurity (in progress)
           </div>
-
-          <div class="panel">
-            <h2>About</h2>
-            <p class="line">
-              I’m a cybersecurity engineer and Georgia Tech cybersecurity grad student.
-              My current interests:
-            </p>
-            <ul>
-              <li>Cloud security (AWS/IAM, hardening, detection)</li>
-              <li>Automation (making secure the default)</li>
-              <li>Binary exploitation (because it’s fun)</li>
-            </ul>
-          </div>
-
-          <div class="panel" style="grid-column: 1 / -1;">
-            <h2>Contact</h2>
-            <p class="line"><span class="prompt">&gt;</span> Email: <a href="mailto:asht17@proton.me">asht17@proton.me</a></p>
-            <p class="line"><span class="prompt">&gt;</span> PGP fingerprint: <code>3F3B 676C 2296 75E9 CE1E 05B1 0C9C B2F7 7AF1 C331</code></p>
+        </div>
+        <div class="subblock">
+          <div class="title" style="margin-bottom:8px;">Certifications</div>
+          <div style="color: var(--muted); line-height: 1.55;">
+            CKAD<br>
+            AWS Solutions Architect Associate
           </div>
         </div>
       </div>
+    </section>
 
-      <div class="footer">
-        <span>Last updated: <span id="updated"></span></span>
-        <span><span class="prompt">status:</span> online</span>
+    <section class="panel stack">
+      <div class="section">
+        <div class="title">Focus</div>
+        <ul>
+          <li>Cloud security and AWS Organizations policy controls</li>
+          <li>Kubernetes operations and platform engineering</li>
+          <li>Python development and practical automation</li>
+          <li>CI/CD workflow hardening and developer enablement</li>
+          <li>Binary exploitation (academic project work; learning track)</li>
+        </ul>
+      </div>
+      <div class="section">
+        <div class="title">Tooling</div>
+        <div class="chips">
+          <span class="chip">Cloud (AWS, GCP)</span>
+          <span class="chip">Kubernetes</span>
+          <span class="chip">Python</span>
+          <span class="chip">Automation</span>
+          <span class="chip">CI/CD</span>
+          <span class="chip">Terraform</span>
+          <span class="chip">Systems Administration</span>
+          <span class="chip">Monitoring + Alerting</span>
+        </div>
+      </div>
+      <div class="section">
+        <div class="title">Meta</div>
+        <div class="contact-row"><div class="k">email</div><div class="v">asht17@proton.me</div></div>
+        <div class="contact-row"><div class="k">pgp</div><div class="v"><a href="https://keys.openpgp.org/vks/v1/by-fingerprint/3F3B676C229675E9CE1E05B10C9CB2F77AF1C331" target="_blank" rel="noreferrer">keys.openpgp.org (public key)</a></div></div>
+        <div class="contact-row"><div class="k">linkedin</div><div class="v"><a href="https://www.linkedin.com/in/ashton-tippin/" target="_blank" rel="noreferrer">linkedin.com/in/ashton-tippin</a></div></div>
+        <div class="contact-row"><div class="k">resume</div><div class="v"><a href="#">resume.pdf</a></div></div>
       </div>
     </section>
-  </main>
-
-  <script>
-    // Tiny, harmless enhancement: show today's date.
-    const d = new Date();
-    document.getElementById("updated").textContent = d.toISOString().slice(0,10);
-  </script>
+  </div>
 </body>
 </html>
