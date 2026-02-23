@@ -12,7 +12,6 @@ Cloud Security • Automation • Binary Exploitation
 ## Links
 >> **LinkedIn:** [View profile](https://www.linkedin.com/in/ashton-tippin)  
 >> **GitHub:** [@asht17](https://github.com/asht17)  
->> **PGP:** [Public key](./pgp.asc)
 
 ---
 
